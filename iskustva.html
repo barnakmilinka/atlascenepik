@@ -77,7 +77,7 @@
   <!-- ============ TESTIMONIALS ============ -->
   <section data-sec style="max-width: 1180px; margin: 0 auto; padding: 44px 32px 90px;">
     <div data-col2 style="display: grid; grid-template-columns: 1fr 1fr; gap: 26px;">
-      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="2">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="20">
         <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
           <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
           <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">{{ t.quote }}</blockquote>
@@ -149,6 +149,24 @@ class Component extends DCLogic {
       testimonials: [
         { quote: 'Nakon višegodišnjih problema sa vratom i vrtoglavicom, tretman mi je pomogao da se vratim sportskim aktivnostima i normalnom životu — bez lekova.', name: 'Mile Kozić', initial: 'M' },
         { quote: 'Presrećna sam rezultatima: veća pokretljivost i nestalo je zadebljanje na leđima. Tretman je bio potpuno bezbolan i bez neželjenih efekata.', name: 'Biljana Jorgić', initial: 'B' },
+        { quote: 'Godinama sam patila od jakih migrena. Već posle prvog tretmana glavobolje su se proredile, a sada su prava retkost.', name: 'Dragana M.', initial: 'D' },
+        { quote: 'Bol u vratu me je budio noću. Posle nameštanja atlasa spavam mirno i ujutru ustajem odmoran.', name: 'Nenad P.', initial: 'N' },
+        { quote: 'Vrtoglavice koje su me pratile mesecima potpuno su prestale. Konačno se osećam sigurno kada hodam.', name: 'Svetlana R.', initial: 'S' },
+        { quote: 'Kao dugogodišnji vozač imao sam stalne tegobe sa vratom i ramenima. Olakšanje sam osetio odmah.', name: 'Goran T.', initial: 'G' },
+        { quote: 'Trnjenje u rukama koje me je mučilo nestalo je nakon nekoliko dana. Hvala Jeleni na strpljenju i toplini.', name: 'Milica J.', initial: 'M' },
+        { quote: 'Zujanje u ušima me je izluđivalo. Posle tretmana je znatno tiše i lakše se koncentrišem na posao.', name: 'Aleksandar V.', initial: 'A' },
+        { quote: 'Držanje mi se vidno popravilo, a bolovi u leđima su prošli. Preporučujem svima koji sede po ceo dan.', name: 'Jovana S.', initial: 'J' },
+        { quote: 'Bila sam skeptična, ali rezultat me je iznenadio. Vrat je pokretljiviji nego godinama unazad.', name: 'Vesna K.', initial: 'V' },
+        { quote: 'Hronični umor koji nisam mogao da objasnim polako je nestao. Imam više energije tokom celog dana.', name: 'Marko Đ.', initial: 'M' },
+        { quote: 'Posle povrede u saobraćajnoj nesreći imala sam stalne glavobolje. Ovaj tretman mi je vratio normalu.', name: 'Ana L.', initial: 'A' },
+        { quote: 'Nervoza i loš san su me pratili mesecima. Osećam se smirenije i konačno spavam kroz celu noć.', name: 'Bojan M.', initial: 'B' },
+        { quote: 'Moja ćerka je imala problema sa držanjem. Nakon tretmana stoji uspravnije i ne žali se na bolove.', name: 'Ljiljana N.', initial: 'L' },
+        { quote: 'Kao sportista osetio sam veću pokretljivost i bržu regeneraciju. Tretman je kratak i potpuno bezbolan.', name: 'Stefan I.', initial: 'S' },
+        { quote: 'Grbica na vratu koja me je godinama mučila počela je da se smanjuje. Presrećna sam.', name: 'Gordana P.', initial: 'G' },
+        { quote: 'Bolovi u kukovima i kolenima su popustili. Nisam ni slutila da je uzrok mogao biti u vratu.', name: 'Radmila S.', initial: 'R' },
+        { quote: 'Profesionalan pristup i topao odnos. Sve mi je bilo objašnjeno, a rezultat je stigao brzo.', name: 'Dejan V.', initial: 'D' },
+        { quote: 'Koncentracija na poslu mi se vidno poboljšala, a glava je bistrija. Zahvalan sam na pomoći.', name: 'Igor M.', initial: 'I' },
+        { quote: 'Posle samo jednog tretmana osetila sam olakšanje u ramenima kakvo dugo nisam. Vraćam se ponovo.', name: 'Tijana R.', initial: 'T' },
       ],
     };
   }
