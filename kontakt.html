@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="sr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="support.js"></script>
+<title>Atlas CENEPIK — Jelena Savić</title>
 </head>
 <body>
-<x-dc>
-<helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,8 +31,10 @@
     [data-burger] { display: inline-flex !important; }
   }
   @media (min-width: 901px) { [data-mobile-panel] { display: none !important; } }
+  [data-mobile-panel]{display:none;}
+  [data-mobile-panel].open{display:flex;}
 </style>
-</helmet>
+
 
 <div style="font-family: 'Mulish', system-ui, sans-serif; color: #2f2b25; background: #faf6ee; font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased;">
 
@@ -52,21 +52,21 @@
         <a href="#top" style="color: #2f6b60; font-weight: 700;">Kontakt</a>
       </div>
       <a data-desktop-cta href="https://wa.me/381603240640" target="_blank" rel="noopener" style="background: #2f6b60; color: #faf6ee; padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; white-space: nowrap; transition: background .2s ease, transform .2s ease;" style-hover="background: #234c45; transform: translateY(-2px);">Zakaži termin</a>
-      <button data-burger onClick="{{ toggleMenu }}" aria-label="Meni" style="background: none; border: none; cursor: pointer; padding: 10px; flex-direction: column; gap: 5px; align-items: center; justify-content: center;">
+      <button data-burger onclick="document.getElementById('mobilePanel').classList.toggle('open')" aria-label="Meni" style="background: none; border: none; cursor: pointer; padding: 10px; flex-direction: column; gap: 5px; align-items: center; justify-content: center;">
         <span style="display: block; width: 24px; height: 2.5px; border-radius: 2px; background: #2f2b25;"></span>
         <span style="display: block; width: 24px; height: 2.5px; border-radius: 2px; background: #2f2b25;"></span>
         <span style="display: block; width: 24px; height: 2.5px; border-radius: 2px; background: #2f2b25;"></span>
       </button>
     </nav>
-    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-      <div data-mobile-panel style="border-top: 1px solid rgba(47,43,37,0.08); background: #faf6ee; padding: 10px 20px 20px; display: flex; flex-direction: column; gap: 2px;">
-        <a onClick="{{ closeMenu }}" href="index.html#top" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Nameštanje atlasa</a>
-        <a onClick="{{ closeMenu }}" href="namestanje-kicme.html" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Nameštanje kičme</a>
-        <a onClick="{{ closeMenu }}" href="iskustva.html" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Iskustva</a>
-        <a onClick="{{ closeMenu }}" href="#top" style="padding: 14px 6px; font-size: 17px; font-weight: 700; color: #2f6b60; border-bottom: 1px solid rgba(47,43,37,0.06);">Kontakt</a>
+    
+      <div data-mobile-panel id="mobilePanel" style="border-top: 1px solid rgba(47,43,37,0.08); background: #faf6ee; padding: 10px 20px 20px; flex-direction: column; gap: 2px;">
+        <a onclick="document.getElementById('mobilePanel').classList.remove('open')" href="index.html#top" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Nameštanje atlasa</a>
+        <a onclick="document.getElementById('mobilePanel').classList.remove('open')" href="namestanje-kicme.html" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Nameštanje kičme</a>
+        <a onclick="document.getElementById('mobilePanel').classList.remove('open')" href="iskustva.html" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Iskustva</a>
+        <a onclick="document.getElementById('mobilePanel').classList.remove('open')" href="#top" style="padding: 14px 6px; font-size: 17px; font-weight: 700; color: #2f6b60; border-bottom: 1px solid rgba(47,43,37,0.06);">Kontakt</a>
         <a href="https://wa.me/381603240640" target="_blank" rel="noopener" style="margin-top: 12px; text-align: center; background: #2f6b60; color: #faf6ee; padding: 15px; border-radius: 999px; font-weight: 700; font-size: 16px;">Zakaži termin</a>
       </div>
-    </sc-if>
+    
   </header>
 
   <!-- ============ PAGE HEADER ============ -->
@@ -119,13 +119,13 @@
         <h2 data-h2 style="font-family: 'Newsreader', serif; font-weight: 500; font-size: 38px; line-height: 1.14; margin: 14px 0 10px; color: #faf6ee;">Ostanimo u kontaktu — pratite naš bilten</h2>
         <p style="font-size: 18px; color: #cbc3b6; margin: 0;">Povremeni saveti za zdraviji vrat, kičmu i držanje tela — bez spama.</p>
       </div>
-      <form onSubmit="{{ onSubmit }}" style="display: flex; flex-direction: column; gap: 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 22px; padding: 30px;">
+      <form onsubmit="event.preventDefault();var t=document.getElementById('nlThanks');if(t)t.style.display='block';this.reset();" style="display: flex; flex-direction: column; gap: 14px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 22px; padding: 30px;">
         <input type="text" placeholder="Ime" style="font-family: inherit; font-size: 16px; padding: 15px 18px; border: 1px solid rgba(255,255,255,0.18); border-radius: 12px; background: rgba(255,255,255,0.06); color: #f3ece0; outline: none; transition: border-color .2s ease;" style-focus="border-color: #7fb3a8;">
         <input type="email" placeholder="Email" style="font-family: inherit; font-size: 16px; padding: 15px 18px; border: 1px solid rgba(255,255,255,0.18); border-radius: 12px; background: rgba(255,255,255,0.06); color: #f3ece0; outline: none; transition: border-color .2s ease;" style-focus="border-color: #7fb3a8;">
         <button type="submit" style="font-family: inherit; background: #2f6b60; color: #faf6ee; border: none; padding: 15px 20px; border-radius: 12px; font-weight: 700; font-size: 16px; cursor: pointer; transition: background .2s ease, transform .2s ease;" style-hover="background: #234c45; transform: translateY(-2px);">Prijavljujem se</button>
-        <sc-if value="{{ subscribed }}" hint-placeholder-val="{{ false }}">
-          <div style="font-size: 14.5px; color: #7fb3a8; font-weight: 600; text-align: center;">Hvala! Uspešno ste prijavljeni.</div>
-        </sc-if>
+        
+          <div id="nlThanks" style="display:none; font-size: 14.5px; color: #7fb3a8; font-weight: 600; text-align: center;">Hvala! Uspešno ste prijavljeni.</div>
+        
       </form>
     </div>
   </section>
@@ -168,20 +168,5 @@
   </footer>
 
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  state = { subscribed: false, menuOpen: false };
-  renderVals() {
-    return {
-      menuOpen: this.state.menuOpen,
-      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
-      closeMenu: () => this.setState({ menuOpen: false }),
-      subscribed: this.state.subscribed,
-      onSubmit: (ev) => { ev.preventDefault(); this.setState({ subscribed: true }); },
-    };
-  }
-}
-</script>
 </body>
 </html>

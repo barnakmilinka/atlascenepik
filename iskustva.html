@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="sr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="support.js"></script>
+<title>Atlas CENEPIK — Jelena Savić</title>
 </head>
 <body>
-<x-dc>
-<helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,8 +29,10 @@
     [data-burger] { display: inline-flex !important; }
   }
   @media (min-width: 901px) { [data-mobile-panel] { display: none !important; } }
+  [data-mobile-panel]{display:none;}
+  [data-mobile-panel].open{display:flex;}
 </style>
-</helmet>
+
 
 <div style="font-family: 'Mulish', system-ui, sans-serif; color: #2f2b25; background: #faf6ee; font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased;">
 
@@ -50,21 +50,21 @@
         <a href="kontakt.html" style="color: #4a453d;">Kontakt</a>
       </div>
       <a data-desktop-cta href="https://wa.me/381603240640" target="_blank" rel="noopener" style="background: #2f6b60; color: #faf6ee; padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; white-space: nowrap; transition: background .2s ease, transform .2s ease;" style-hover="background: #234c45; transform: translateY(-2px);">Zakaži termin</a>
-      <button data-burger onClick="{{ toggleMenu }}" aria-label="Meni" style="background: none; border: none; cursor: pointer; padding: 10px; flex-direction: column; gap: 5px; align-items: center; justify-content: center;">
+      <button data-burger onclick="document.getElementById('mobilePanel').classList.toggle('open')" aria-label="Meni" style="background: none; border: none; cursor: pointer; padding: 10px; flex-direction: column; gap: 5px; align-items: center; justify-content: center;">
         <span style="display: block; width: 24px; height: 2.5px; border-radius: 2px; background: #2f2b25;"></span>
         <span style="display: block; width: 24px; height: 2.5px; border-radius: 2px; background: #2f2b25;"></span>
         <span style="display: block; width: 24px; height: 2.5px; border-radius: 2px; background: #2f2b25;"></span>
       </button>
     </nav>
-    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-      <div data-mobile-panel style="border-top: 1px solid rgba(47,43,37,0.08); background: #faf6ee; padding: 10px 20px 20px; display: flex; flex-direction: column; gap: 2px;">
-        <a onClick="{{ closeMenu }}" href="index.html#top" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Nameštanje atlasa</a>
-        <a onClick="{{ closeMenu }}" href="namestanje-kicme.html" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Nameštanje kičme</a>
-        <a onClick="{{ closeMenu }}" href="#top" style="padding: 14px 6px; font-size: 17px; font-weight: 700; color: #2f6b60; border-bottom: 1px solid rgba(47,43,37,0.06);">Iskustva</a>
-        <a onClick="{{ closeMenu }}" href="kontakt.html" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Kontakt</a>
+    
+      <div data-mobile-panel id="mobilePanel" style="border-top: 1px solid rgba(47,43,37,0.08); background: #faf6ee; padding: 10px 20px 20px; flex-direction: column; gap: 2px;">
+        <a onclick="document.getElementById('mobilePanel').classList.remove('open')" href="index.html#top" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Nameštanje atlasa</a>
+        <a onclick="document.getElementById('mobilePanel').classList.remove('open')" href="namestanje-kicme.html" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Nameštanje kičme</a>
+        <a onclick="document.getElementById('mobilePanel').classList.remove('open')" href="#top" style="padding: 14px 6px; font-size: 17px; font-weight: 700; color: #2f6b60; border-bottom: 1px solid rgba(47,43,37,0.06);">Iskustva</a>
+        <a onclick="document.getElementById('mobilePanel').classList.remove('open')" href="kontakt.html" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Kontakt</a>
         <a href="https://wa.me/381603240640" target="_blank" rel="noopener" style="margin-top: 12px; text-align: center; background: #2f6b60; color: #faf6ee; padding: 15px; border-radius: 999px; font-weight: 700; font-size: 16px;">Zakaži termin</a>
       </div>
-    </sc-if>
+    
   </header>
 
   <!-- ============ PAGE HEADER ============ -->
@@ -77,16 +77,187 @@
   <!-- ============ TESTIMONIALS ============ -->
   <section data-sec style="max-width: 1180px; margin: 0 auto; padding: 44px 32px 90px;">
     <div data-col2 style="display: grid; grid-template-columns: 1fr 1fr; gap: 26px;">
-      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="20">
+      
         <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
           <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
-          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">{{ t.quote }}</blockquote>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Nakon višegodišnjih problema sa vratom i vrtoglavicom, tretman mi je pomogao da se vratim sportskim aktivnostima i normalnom životu — bez lekova.</blockquote>
           <figcaption style="display: flex; align-items: center; gap: 13px;">
-            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">{{ t.initial }}</span>
-            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">{{ t.name }}</span>
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">M</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Mile Kozić</span>
           </figcaption>
         </figure>
-      </sc-for>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Presrećna sam rezultatima: veća pokretljivost i nestalo je zadebljanje na leđima. Tretman je bio potpuno bezbolan i bez neželjenih efekata.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">B</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Biljana Jorgić</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Godinama sam patila od jakih migrena. Već posle prvog tretmana glavobolje su se proredile, a sada su prava retkost.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">D</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Dragana M.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Bol u vratu me je budio noću. Posle nameštanja atlasa spavam mirno i ujutru ustajem odmoran.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">N</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Nenad P.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Vrtoglavice koje su me pratile mesecima potpuno su prestale. Konačno se osećam sigurno kada hodam.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">S</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Svetlana R.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Kao dugogodišnji vozač imao sam stalne tegobe sa vratom i ramenima. Olakšanje sam osetio odmah.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">G</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Goran T.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Trnjenje u rukama koje me je mučilo nestalo je nakon nekoliko dana. Hvala Jeleni na strpljenju i toplini.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">M</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Milica J.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Zujanje u ušima me je izluđivalo. Posle tretmana je znatno tiše i lakše se koncentrišem na posao.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">A</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Aleksandar V.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Držanje mi se vidno popravilo, a bolovi u leđima su prošli. Preporučujem svima koji sede po ceo dan.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">J</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Jovana S.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Bila sam skeptična, ali rezultat me je iznenadio. Vrat je pokretljiviji nego godinama unazad.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">V</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Vesna K.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Hronični umor koji nisam mogao da objasnim polako je nestao. Imam više energije tokom celog dana.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">M</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Marko Đ.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Posle povrede u saobraćajnoj nesreći imala sam stalne glavobolje. Ovaj tretman mi je vratio normalu.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">A</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Ana L.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Nervoza i loš san su me pratili mesecima. Osećam se smirenije i konačno spavam kroz celu noć.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">B</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Bojan M.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Moja ćerka je imala problema sa držanjem. Nakon tretmana stoji uspravnije i ne žali se na bolove.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">L</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Ljiljana N.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Kao sportista osetio sam veću pokretljivost i bržu regeneraciju. Tretman je kratak i potpuno bezbolan.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">S</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Stefan I.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Grbica na vratu koja me je godinama mučila počela je da se smanjuje. Presrećna sam.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">G</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Gordana P.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Bolovi u kukovima i kolenima su popustili. Nisam ni slutila da je uzrok mogao biti u vratu.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">R</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Radmila S.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Profesionalan pristup i topao odnos. Sve mi je bilo objašnjeno, a rezultat je stigao brzo.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">D</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Dejan V.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Koncentracija na poslu mi se vidno poboljšala, a glava je bistrija. Zahvalan sam na pomoći.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">I</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Igor M.</span>
+          </figcaption>
+        </figure>
+      
+        <figure style="margin: 0; background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 22px; padding: 40px 38px; box-shadow: 0 16px 34px -26px rgba(47,43,37,0.45); transition: transform .25s ease, box-shadow .25s ease;" style-hover="transform: translateY(-5px); box-shadow: 0 26px 44px -28px rgba(47,43,37,0.55);">
+          <div style="font-family: 'Newsreader', serif; font-size: 48px; line-height: 0.6; color: #cdb994; height: 26px;">“</div>
+          <blockquote style="margin: 0 0 24px; font-size: 20px; line-height: 1.55; color: #3f3a33;">Posle samo jednog tretmana osetila sam olakšanje u ramenima kakvo dugo nisam. Vraćam se ponovo.</blockquote>
+          <figcaption style="display: flex; align-items: center; gap: 13px;">
+            <span style="width: 46px; height: 46px; border-radius: 50%; background: #2f6b60; color: #faf6ee; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 19px;">T</span>
+            <span style="font-weight: 700; color: #2f2b25; font-size: 17px;">Tijana R.</span>
+          </figcaption>
+        </figure>
+      
     </div>
   </section>
 
@@ -137,40 +308,5 @@
   </footer>
 
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  state = { menuOpen: false };
-  renderVals() {
-    return {
-      menuOpen: this.state.menuOpen,
-      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
-      closeMenu: () => this.setState({ menuOpen: false }),
-      testimonials: [
-        { quote: 'Nakon višegodišnjih problema sa vratom i vrtoglavicom, tretman mi je pomogao da se vratim sportskim aktivnostima i normalnom životu — bez lekova.', name: 'Mile Kozić', initial: 'M' },
-        { quote: 'Presrećna sam rezultatima: veća pokretljivost i nestalo je zadebljanje na leđima. Tretman je bio potpuno bezbolan i bez neželjenih efekata.', name: 'Biljana Jorgić', initial: 'B' },
-        { quote: 'Godinama sam patila od jakih migrena. Već posle prvog tretmana glavobolje su se proredile, a sada su prava retkost.', name: 'Dragana M.', initial: 'D' },
-        { quote: 'Bol u vratu me je budio noću. Posle nameštanja atlasa spavam mirno i ujutru ustajem odmoran.', name: 'Nenad P.', initial: 'N' },
-        { quote: 'Vrtoglavice koje su me pratile mesecima potpuno su prestale. Konačno se osećam sigurno kada hodam.', name: 'Svetlana R.', initial: 'S' },
-        { quote: 'Kao dugogodišnji vozač imao sam stalne tegobe sa vratom i ramenima. Olakšanje sam osetio odmah.', name: 'Goran T.', initial: 'G' },
-        { quote: 'Trnjenje u rukama koje me je mučilo nestalo je nakon nekoliko dana. Hvala Jeleni na strpljenju i toplini.', name: 'Milica J.', initial: 'M' },
-        { quote: 'Zujanje u ušima me je izluđivalo. Posle tretmana je znatno tiše i lakše se koncentrišem na posao.', name: 'Aleksandar V.', initial: 'A' },
-        { quote: 'Držanje mi se vidno popravilo, a bolovi u leđima su prošli. Preporučujem svima koji sede po ceo dan.', name: 'Jovana S.', initial: 'J' },
-        { quote: 'Bila sam skeptična, ali rezultat me je iznenadio. Vrat je pokretljiviji nego godinama unazad.', name: 'Vesna K.', initial: 'V' },
-        { quote: 'Hronični umor koji nisam mogao da objasnim polako je nestao. Imam više energije tokom celog dana.', name: 'Marko Đ.', initial: 'M' },
-        { quote: 'Posle povrede u saobraćajnoj nesreći imala sam stalne glavobolje. Ovaj tretman mi je vratio normalu.', name: 'Ana L.', initial: 'A' },
-        { quote: 'Nervoza i loš san su me pratili mesecima. Osećam se smirenije i konačno spavam kroz celu noć.', name: 'Bojan M.', initial: 'B' },
-        { quote: 'Moja ćerka je imala problema sa držanjem. Nakon tretmana stoji uspravnije i ne žali se na bolove.', name: 'Ljiljana N.', initial: 'L' },
-        { quote: 'Kao sportista osetio sam veću pokretljivost i bržu regeneraciju. Tretman je kratak i potpuno bezbolan.', name: 'Stefan I.', initial: 'S' },
-        { quote: 'Grbica na vratu koja me je godinama mučila počela je da se smanjuje. Presrećna sam.', name: 'Gordana P.', initial: 'G' },
-        { quote: 'Bolovi u kukovima i kolenima su popustili. Nisam ni slutila da je uzrok mogao biti u vratu.', name: 'Radmila S.', initial: 'R' },
-        { quote: 'Profesionalan pristup i topao odnos. Sve mi je bilo objašnjeno, a rezultat je stigao brzo.', name: 'Dejan V.', initial: 'D' },
-        { quote: 'Koncentracija na poslu mi se vidno poboljšala, a glava je bistrija. Zahvalan sam na pomoći.', name: 'Igor M.', initial: 'I' },
-        { quote: 'Posle samo jednog tretmana osetila sam olakšanje u ramenima kakvo dugo nisam. Vraćam se ponovo.', name: 'Tijana R.', initial: 'T' },
-      ],
-    };
-  }
-}
-</script>
 </body>
 </html>

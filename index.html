@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="sr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="support.js"></script>
+<title>Atlas CENEPIK — Jelena Savić</title>
 </head>
 <body>
-<x-dc>
-<helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -39,8 +37,10 @@
     [data-stats] { gap: 18px !important; }
     [data-cta-inner] { padding: 40px 26px !important; }
   }
+  [data-mobile-panel]{display:none;}
+  [data-mobile-panel].open{display:flex;}
 </style>
-</helmet>
+
 <div style="font-family: 'Mulish', system-ui, sans-serif; color: #2f2b25; background: #faf6ee; font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased;">
 
   <!-- ============ NAV ============ -->
@@ -57,21 +57,21 @@
         <a href="kontakt.html" style="color: #4a453d;">Kontakt</a>
       </div>
       <a data-desktop-cta href="https://wa.me/381603240640" target="_blank" rel="noopener" style="background: #2f6b60; color: #faf6ee; padding: 12px 22px; border-radius: 999px; font-weight: 600; font-size: 15px; white-space: nowrap; transition: background .2s ease, transform .2s ease;" style-hover="background: #234c45; transform: translateY(-2px);">Zakaži termin</a>
-      <button data-burger onClick="{{ toggleMenu }}" aria-label="Meni" style="background: none; border: none; cursor: pointer; padding: 10px; flex-direction: column; gap: 5px; align-items: center; justify-content: center;">
+      <button data-burger onclick="document.getElementById('mobilePanel').classList.toggle('open')" aria-label="Meni" style="background: none; border: none; cursor: pointer; padding: 10px; flex-direction: column; gap: 5px; align-items: center; justify-content: center;">
         <span style="display: block; width: 24px; height: 2.5px; border-radius: 2px; background: #2f2b25;"></span>
         <span style="display: block; width: 24px; height: 2.5px; border-radius: 2px; background: #2f2b25;"></span>
         <span style="display: block; width: 24px; height: 2.5px; border-radius: 2px; background: #2f2b25;"></span>
       </button>
     </nav>
-    <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-      <div data-mobile-panel style="border-top: 1px solid rgba(47,43,37,0.08); background: #faf6ee; padding: 10px 20px 20px; display: flex; flex-direction: column; gap: 2px;">
-        <a onClick="{{ closeMenu }}" href="#top" style="padding: 14px 6px; font-size: 17px; font-weight: 700; color: #2f6b60; border-bottom: 1px solid rgba(47,43,37,0.06);">Nameštanje atlasa</a>
-        <a onClick="{{ closeMenu }}" href="namestanje-kicme.html" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Nameštanje kičme</a>
-        <a onClick="{{ closeMenu }}" href="iskustva.html" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Iskustva</a>
-        <a onClick="{{ closeMenu }}" href="kontakt.html" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Kontakt</a>
+    
+      <div data-mobile-panel id="mobilePanel" style="border-top: 1px solid rgba(47,43,37,0.08); background: #faf6ee; padding: 10px 20px 20px; flex-direction: column; gap: 2px;">
+        <a onclick="document.getElementById('mobilePanel').classList.remove('open')" href="#top" style="padding: 14px 6px; font-size: 17px; font-weight: 700; color: #2f6b60; border-bottom: 1px solid rgba(47,43,37,0.06);">Nameštanje atlasa</a>
+        <a onclick="document.getElementById('mobilePanel').classList.remove('open')" href="namestanje-kicme.html" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Nameštanje kičme</a>
+        <a onclick="document.getElementById('mobilePanel').classList.remove('open')" href="iskustva.html" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Iskustva</a>
+        <a onclick="document.getElementById('mobilePanel').classList.remove('open')" href="kontakt.html" style="padding: 14px 6px; font-size: 17px; font-weight: 500; color: #33302b; border-bottom: 1px solid rgba(47,43,37,0.06);">Kontakt</a>
         <a href="https://wa.me/381603240640" target="_blank" rel="noopener" style="margin-top: 12px; text-align: center; background: #2f6b60; color: #faf6ee; padding: 15px; border-radius: 999px; font-weight: 700; font-size: 16px;">Zakaži termin</a>
       </div>
-    </sc-if>
+    
   </header>
 
   <!-- ============ HERO ============ -->
@@ -126,12 +126,62 @@
       <p style="font-size: 18px; color: #6d675c; margin: 0;">Mnoge hronične tegobe potiču iz istog uzroka. Evo najčešćih koje klijenti prijavljuju.</p>
     </div>
     <div data-sym style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;">
-      <sc-for list="{{ symptoms }}" as="s" hint-placeholder-count="11">
+      
         <div style="background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 18px; padding: 24px 22px; display: flex; align-items: center; gap: 14px; box-shadow: 0 10px 24px -20px rgba(47,43,37,0.4); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="transform: translateY(-6px); box-shadow: 0 20px 36px -24px rgba(47,43,37,0.5); border-color: rgba(47,107,96,0.35);">
-          <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #eef3f1; color: #2f6b60; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 17px;">{{ s.n }}</span>
-          <span style="font-weight: 600; font-size: 16px; color: #33302b; line-height: 1.25;">{{ s.label }}</span>
+          <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #eef3f1; color: #2f6b60; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 17px;">01</span>
+          <span style="font-weight: 600; font-size: 16px; color: #33302b; line-height: 1.25;">Glavobolja i migrena</span>
         </div>
-      </sc-for>
+      
+        <div style="background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 18px; padding: 24px 22px; display: flex; align-items: center; gap: 14px; box-shadow: 0 10px 24px -20px rgba(47,43,37,0.4); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="transform: translateY(-6px); box-shadow: 0 20px 36px -24px rgba(47,43,37,0.5); border-color: rgba(47,107,96,0.35);">
+          <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #eef3f1; color: #2f6b60; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 17px;">02</span>
+          <span style="font-weight: 600; font-size: 16px; color: #33302b; line-height: 1.25;">Vrtoglavica i nesvestica</span>
+        </div>
+      
+        <div style="background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 18px; padding: 24px 22px; display: flex; align-items: center; gap: 14px; box-shadow: 0 10px 24px -20px rgba(47,43,37,0.4); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="transform: translateY(-6px); box-shadow: 0 20px 36px -24px rgba(47,43,37,0.5); border-color: rgba(47,107,96,0.35);">
+          <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #eef3f1; color: #2f6b60; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 17px;">03</span>
+          <span style="font-weight: 600; font-size: 16px; color: #33302b; line-height: 1.25;">Bol u vratu i ramenima</span>
+        </div>
+      
+        <div style="background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 18px; padding: 24px 22px; display: flex; align-items: center; gap: 14px; box-shadow: 0 10px 24px -20px rgba(47,43,37,0.4); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="transform: translateY(-6px); box-shadow: 0 20px 36px -24px rgba(47,43,37,0.5); border-color: rgba(47,107,96,0.35);">
+          <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #eef3f1; color: #2f6b60; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 17px;">04</span>
+          <span style="font-weight: 600; font-size: 16px; color: #33302b; line-height: 1.25;">Grbica na vratu</span>
+        </div>
+      
+        <div style="background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 18px; padding: 24px 22px; display: flex; align-items: center; gap: 14px; box-shadow: 0 10px 24px -20px rgba(47,43,37,0.4); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="transform: translateY(-6px); box-shadow: 0 20px 36px -24px rgba(47,43,37,0.5); border-color: rgba(47,107,96,0.35);">
+          <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #eef3f1; color: #2f6b60; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 17px;">05</span>
+          <span style="font-weight: 600; font-size: 16px; color: #33302b; line-height: 1.25;">Trnjenje ruku i nogu</span>
+        </div>
+      
+        <div style="background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 18px; padding: 24px 22px; display: flex; align-items: center; gap: 14px; box-shadow: 0 10px 24px -20px rgba(47,43,37,0.4); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="transform: translateY(-6px); box-shadow: 0 20px 36px -24px rgba(47,43,37,0.5); border-color: rgba(47,107,96,0.35);">
+          <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #eef3f1; color: #2f6b60; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 17px;">06</span>
+          <span style="font-weight: 600; font-size: 16px; color: #33302b; line-height: 1.25;">Zujanje u ušima</span>
+        </div>
+      
+        <div style="background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 18px; padding: 24px 22px; display: flex; align-items: center; gap: 14px; box-shadow: 0 10px 24px -20px rgba(47,43,37,0.4); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="transform: translateY(-6px); box-shadow: 0 20px 36px -24px rgba(47,43,37,0.5); border-color: rgba(47,107,96,0.35);">
+          <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #eef3f1; color: #2f6b60; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 17px;">07</span>
+          <span style="font-weight: 600; font-size: 16px; color: #33302b; line-height: 1.25;">Loše držanje tela</span>
+        </div>
+      
+        <div style="background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 18px; padding: 24px 22px; display: flex; align-items: center; gap: 14px; box-shadow: 0 10px 24px -20px rgba(47,43,37,0.4); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="transform: translateY(-6px); box-shadow: 0 20px 36px -24px rgba(47,43,37,0.5); border-color: rgba(47,107,96,0.35);">
+          <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #eef3f1; color: #2f6b60; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 17px;">08</span>
+          <span style="font-weight: 600; font-size: 16px; color: #33302b; line-height: 1.25;">Loš san i nervoza</span>
+        </div>
+      
+        <div style="background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 18px; padding: 24px 22px; display: flex; align-items: center; gap: 14px; box-shadow: 0 10px 24px -20px rgba(47,43,37,0.4); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="transform: translateY(-6px); box-shadow: 0 20px 36px -24px rgba(47,43,37,0.5); border-color: rgba(47,107,96,0.35);">
+          <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #eef3f1; color: #2f6b60; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 17px;">09</span>
+          <span style="font-weight: 600; font-size: 16px; color: #33302b; line-height: 1.25;">Hroničan umor</span>
+        </div>
+      
+        <div style="background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 18px; padding: 24px 22px; display: flex; align-items: center; gap: 14px; box-shadow: 0 10px 24px -20px rgba(47,43,37,0.4); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="transform: translateY(-6px); box-shadow: 0 20px 36px -24px rgba(47,43,37,0.5); border-color: rgba(47,107,96,0.35);">
+          <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #eef3f1; color: #2f6b60; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 17px;">10</span>
+          <span style="font-weight: 600; font-size: 16px; color: #33302b; line-height: 1.25;">Slaba koncentracija</span>
+        </div>
+      
+        <div style="background: #fff; border: 1px solid rgba(47,43,37,0.07); border-radius: 18px; padding: 24px 22px; display: flex; align-items: center; gap: 14px; box-shadow: 0 10px 24px -20px rgba(47,43,37,0.4); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;" style-hover="transform: translateY(-6px); box-shadow: 0 20px 36px -24px rgba(47,43,37,0.5); border-color: rgba(47,107,96,0.35);">
+          <span style="flex: none; width: 40px; height: 40px; border-radius: 12px; background: #eef3f1; color: #2f6b60; display: inline-flex; align-items: center; justify-content: center; font-family: 'Newsreader', serif; font-weight: 600; font-size: 17px;">11</span>
+          <span style="font-weight: 600; font-size: 16px; color: #33302b; line-height: 1.25;">Spazmi mišića</span>
+        </div>
+      
     </div>
   </section>
 
@@ -205,9 +255,17 @@
       <span style="font-size: 13.5px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #7fb3a8;">Gradovi u kojima radim</span>
       <h2 data-h2 style="font-family: 'Newsreader', serif; font-weight: 500; font-size: 40px; line-height: 1.12; margin: 16px 0 34px; color: #faf6ee;">Dostupno bliže vama</h2>
       <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px;">
-        <sc-for list="{{ cities }}" as="c" hint-placeholder-count="5">
-          <span style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 999px; padding: 13px 28px; font-weight: 600; font-size: 17px; color: #f3ece0; transition: transform .25s ease, background .25s ease;" style-hover="transform: translateY(-3px); background: rgba(255,255,255,0.1);">{{ c }}</span>
-        </sc-for>
+        
+          <span style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 999px; padding: 13px 28px; font-weight: 600; font-size: 17px; color: #f3ece0; transition: transform .25s ease, background .25s ease;" style-hover="transform: translateY(-3px); background: rgba(255,255,255,0.1);">Novi Sad</span>
+        
+          <span style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 999px; padding: 13px 28px; font-weight: 600; font-size: 17px; color: #f3ece0; transition: transform .25s ease, background .25s ease;" style-hover="transform: translateY(-3px); background: rgba(255,255,255,0.1);">Beograd</span>
+        
+          <span style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 999px; padding: 13px 28px; font-weight: 600; font-size: 17px; color: #f3ece0; transition: transform .25s ease, background .25s ease;" style-hover="transform: translateY(-3px); background: rgba(255,255,255,0.1);">Banja Luka</span>
+        
+          <span style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 999px; padding: 13px 28px; font-weight: 600; font-size: 17px; color: #f3ece0; transition: transform .25s ease, background .25s ease;" style-hover="transform: translateY(-3px); background: rgba(255,255,255,0.1);">Sarajevo</span>
+        
+          <span style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 999px; padding: 13px 28px; font-weight: 600; font-size: 17px; color: #f3ece0; transition: transform .25s ease, background .25s ease;" style-hover="transform: translateY(-3px); background: rgba(255,255,255,0.1);">Igalo</span>
+        
       </div>
     </div>
   </section>
@@ -259,36 +317,5 @@
   </footer>
 
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script>
-class Component extends DCLogic {
-  state = { menuOpen: false };
-  renderVals() {
-    return {
-      menuOpen: this.state.menuOpen,
-      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
-      closeMenu: () => this.setState({ menuOpen: false }),
-      symptoms: [
-        { n: '01', label: 'Glavobolja i migrena' },
-        { n: '02', label: 'Vrtoglavica i nesvestica' },
-        { n: '03', label: 'Bol u vratu i ramenima' },
-        { n: '04', label: 'Grbica na vratu' },
-        { n: '05', label: 'Trnjenje ruku i nogu' },
-        { n: '06', label: 'Zujanje u ušima' },
-        { n: '07', label: 'Loše držanje tela' },
-        { n: '08', label: 'Loš san i nervoza' },
-        { n: '09', label: 'Hroničan umor' },
-        { n: '10', label: 'Slaba koncentracija' },
-        { n: '11', label: 'Spazmi mišića' },
-      ],
-      testimonials: [
-        { quote: 'Nakon višegodišnjih problema sa vratom i vrtoglavicom, tretman mi je pomogao da se vratim sportskim aktivnostima i normalnom životu — bez lekova.', name: 'Mile Kozić', initial: 'M' },
-        { quote: 'Presrećna sam rezultatima: veća pokretljivost i nestalo je zadebljanje na leđima. Tretman je bio potpuno bezbolan i bez neželjenih efekata.', name: 'Biljana Jorgić', initial: 'B' },
-      ],
-      cities: ['Novi Sad', 'Beograd', 'Banja Luka', 'Sarajevo', 'Igalo'],
-    };
-  }
-}
-</script>
 </body>
 </html>
